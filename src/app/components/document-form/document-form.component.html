@@ -1,0 +1,75 @@
+<div class="form-container">
+    <h2>Registrazione Nuovo Documento</h2>
+    <form [formGroup]="documentForm" (ngSubmit)="onSubmit()">
+        
+        <h3>Dati Generali</h3>
+        
+        <div class="form-group">
+            <label for="title">Titolo del Documento *</label>
+            <input id="title" type="text" formControlName="title" placeholder="Es. Contratto Fornitore X - 2024">
+            @if (documentForm.get('title')?.invalid && documentForm.get('title')?.touched) {
+                <small class="error-message">Il titolo è obbligatorio.</small>
+            }
+        </div>
+
+        <div class="form-group">
+            <label for="author">Autore / Responsabile *</label>
+            <input id="author" type="text" formControlName="author" placeholder="Es. Ufficio Amministrazione, Mario Rossi">
+            @if (documentForm.get('author')?.invalid && documentForm.get('author')?.touched) {
+                <small class="error-message">L'autore è obbligatorio.</small>
+            }
+        </div>
+        
+        <div class="form-group">
+            <label for="category">Categoria *</label> 
+            <input id="category" type="text" formControlName="category" placeholder="Es. Contratto, Fattura, Verbale">
+            @if (documentForm.get('category')?.invalid && documentForm.get('category')?.touched) {
+                <small class="error-message">La categoria è obbligatoria.</small>
+            }
+        </div>
+
+        <div class="form-group">
+            <label for="doc_date">Data del Documento *</label>
+            <input id="doc_date" type="date" formControlName="doc_date">
+            @if (documentForm.get('doc_date')?.invalid && documentForm.get('doc_date')?.touched) {
+                <small class="error-message">La data è obbligatoria.</small>
+            }
+        </div>
+        
+        <div class="form-group">
+            <label for="notes">Note Aggiuntive</label>
+            <textarea id="notes" formControlName="notes" rows="3" placeholder="Informazioni aggiuntive o riassunto breve (opzionale)"></textarea>
+        </div>
+
+        <h3>Mappatura Archivio Fisico</h3>
+
+        <div class="form-group">
+            <label for="physical_archive">Archivio Fisico *</label>
+            <input id="physical_archive" type="text" formControlName="physical_archive" placeholder="Es. Ufficio Legale, Magazzino 1">
+            @if (documentForm.get('physical_archive')?.invalid && documentForm.get('physical_archive')?.touched) {
+                <small class="error-message">L'archivio è obbligatorio.</small>
+            }
+        </div>
+        
+        <div class="form-group">
+            <label for="cabinet">Armadio/Scaffale *</label>
+            <input id="cabinet" type="text" formControlName="cabinet" placeholder="Es. A2, Scaffale 5">
+            @if (documentForm.get('cabinet')?.invalid && documentForm.get('cabinet')?.touched) {
+                <small class="error-message">L'armadio è obbligatorio.</small>
+            }
+        </div>
+        
+        <div class="form-group">
+            <label for="folder">Cartella/Faldone *</label>
+            <input id="folder" type="text" formControlName="folder" placeholder="Es. Faldone Contratti 2024, Cartella Neri">
+            @if (documentForm.get('folder')?.invalid && documentForm.get('folder')?.touched) {
+                <small class="error-message">La cartella è obbligatoria.</small>
+            }
+        </div>
+
+        <button type="submit" [disabled]="documentForm.invalid">
+            Registra Documento
+        </button>
+
+    </form>
+</div>
